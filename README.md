@@ -13,7 +13,7 @@ Reflection removal plays an important role in background repalcement. There are 
 
 ## Reflection Removal Approaches
 1. Detect reflection and inpaint using inpainting models (On Progress)
-2. Remove reflection instantly using SIR models (Not Started Yet)
+2. Remove reflection instantly using SIR models (On Progress)
 
 ## Approach 1: Detect reflection and inpaint using inpainting models
 * Detect reflection with reflection detection model (Single class)
