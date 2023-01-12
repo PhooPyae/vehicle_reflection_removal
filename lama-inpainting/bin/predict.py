@@ -6,12 +6,17 @@
 #       indir=<path to input data> \
 #       outdir=<where to store predicts>
 
+# ./bin/predict.py \
+#       model.path=<path to checkpoint, prepared by make_checkpoint.py> \
+#       indir=<path to input data> \
+#       outdir=<where to store predicts>
 import logging
 import os
 import sys
 import traceback
 
-sys.path.append('/root/lily/cv/panel_detection/carro-ds-cv/detectron2/lama')
+sys.path.append('/root/lily/cv/panel_detection/vehicle_reflection_removal/lama-inpainting')
+
 from saicinpainting.evaluation.utils import move_to_device
 from saicinpainting.evaluation.refinement import refine_predict
 os.environ['OMP_NUM_THREADS'] = '1'
@@ -64,6 +69,7 @@ def main(predict_config: OmegaConf):
             predict_config.indir += '/'
 
         dataset = make_default_val_dataset(predict_config.indir, **predict_config.dataset)
+        print('Dataset len {}'.format(len(dataset)))
         for img_i in tqdm.trange(len(dataset)):
             mask_fname = dataset.mask_filenames[img_i]
             cur_out_fname = os.path.join(
